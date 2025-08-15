@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const {generateToken} = require("../utils/sessionMapping");
+const {generateToken} = require("../utils/tokenHandeling");
 const bcrypt = require("bcrypt");
 
 async function handelUserSignup(req, res) {

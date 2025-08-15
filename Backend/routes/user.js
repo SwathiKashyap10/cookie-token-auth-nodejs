@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const {handelUserSignup,handelUserLogin} = require("../controllers/user")
-const {verifyToken} = require("../utils/sessionMapping");
+const {verifyToken} = require("../utils/tokenHandeling");
+const protect = require("../middelware/protect");
 
 router.post("/",handelUserSignup);
 router.post("/login",handelUserLogin);
@@ -29,7 +30,7 @@ router.post("/logout", (req, res) => {
 });
 
 
-router.get("/check-auth", (req, res) => {
+router.get("/check-auth",protect, (req, res) => {
   try {
     const token = req.cookies?.uid;
     if (!token) {
@@ -50,7 +51,7 @@ router.get("/check-auth", (req, res) => {
 });
 
 
-router.get("/profile", (req, res) => {
+router.get("/profile",protect, (req, res) => {
   try {
     const token = req.cookies?.uid;
     if (!token) {

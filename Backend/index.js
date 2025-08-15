@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const {main} = require("./db");
 
-const protect = require("./middelware/protected")
+const protect = require("./middelware/protect")
 
 // routes 
 const userRoute = require("./routes/user");
